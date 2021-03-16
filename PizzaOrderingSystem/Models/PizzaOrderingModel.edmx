@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PizzaOrderingSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminDetails">
+          <Key>
+            <PropertyRef Name="A_Id" />
+          </Key>
+          <Property Name="A_Id" Type="int" Nullable="false" />
+          <Property Name="A_Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CustomerDetails">
+          <Key>
+            <PropertyRef Name="C_Id" />
+          </Key>
+          <Property Name="C_Id" Type="int" Nullable="false" />
+          <Property Name="C_Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="IntegradientDetails">
+          <Key>
+            <PropertyRef Name="IngradientId" />
+          </Key>
+          <Property Name="IngradientId" Type="int" Nullable="false" />
+          <Property Name="IngradientName" Type="varchar" MaxLength="100" />
+          <Property Name="PizzaId" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="AvaliabiltyStatus" Type="int" />
+        </EntityType>
+        <EntityType Name="LoginDetails">
+          <Key>
+            <PropertyRef Name="L_Username" />
+          </Key>
+          <Property Name="L_Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="L_Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="PizzaId" Type="int" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="City" Type="varchar" MaxLength="100" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="PaymentDetails">
+          <Key>
+            <PropertyRef Name="PaymentId" />
+          </Key>
+          <Property Name="PaymentId" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" />
+          <Property Name="Paymentmode" Type="varchar" MaxLength="50" />
+          <Property Name="PaymentStatus" Type="int" />
+        </EntityType>
+        <EntityType Name="PizzaDetails">
+          <Key>
+            <PropertyRef Name="PizzaId" />
+          </Key>
+          <Property Name="PizzaId" Type="int" Nullable="false" />
+          <Property Name="PizzaName" Type="varchar" MaxLength="50" />
+          <Property Name="Pizzadescription" Type="varchar" MaxLength="100" />
+          <Property Name="PizzaPrice" Type="float" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="TotalPrice" Type="float" />
+        </EntityType>
+        <EntityType Name="RegisterDetails">
+          <Key>
+            <PropertyRef Name="R_Id" />
+          </Key>
+          <Property Name="R_Id" Type="int" Nullable="false" />
+          <Property Name="R_Name" Type="varchar" MaxLength="50" />
+          <Property Name="R_Username" Type="varchar" MaxLength="50" />
+          <Property Name="R_Address" Type="varchar" MaxLength="100" />
+          <Property Name="R_Role" Type="varchar" MaxLength="50" />
+          <Property Name="R_Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Integradi__Pizza__5441852A">
+          <End Role="PizzaDetails" Type="Self.PizzaDetails" Multiplicity="0..1" />
+          <End Role="IntegradientDetails" Type="Self.IntegradientDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PizzaDetails">
+              <PropertyRef Name="PizzaId" />
+            </Principal>
+            <Dependent Role="IntegradientDetails">
+              <PropertyRef Name="PizzaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Custo__4E88ABD4">
+          <End Role="CustomerDetails" Type="Self.CustomerDetails" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerDetails">
+              <PropertyRef Name="C_Id" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Pizza__4D94879B">
+          <End Role="PizzaDetails" Type="Self.PizzaDetails" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PizzaDetails">
+              <PropertyRef Name="PizzaId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="PizzaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PaymentDe__Order__5165187F">
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="0..1" />
+          <End Role="PaymentDetails" Type="Self.PaymentDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderDetails">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="PaymentDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PizzaOrderingSystemModelStoreContainer">
+          <EntitySet Name="AdminDetails" EntityType="Self.AdminDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerDetails" EntityType="Self.CustomerDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IntegradientDetails" EntityType="Self.IntegradientDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginDetails" EntityType="Self.LoginDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentDetails" EntityType="Self.PaymentDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PizzaDetails" EntityType="Self.PizzaDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegisterDetails" EntityType="Self.RegisterDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Integradi__Pizza__5441852A" Association="Self.FK__Integradi__Pizza__5441852A">
+            <End Role="PizzaDetails" EntitySet="PizzaDetails" />
+            <End Role="IntegradientDetails" EntitySet="IntegradientDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Custo__4E88ABD4" Association="Self.FK__OrderDeta__Custo__4E88ABD4">
+            <End Role="CustomerDetails" EntitySet="CustomerDetails" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Pizza__4D94879B" Association="Self.FK__OrderDeta__Pizza__4D94879B">
+            <End Role="PizzaDetails" EntitySet="PizzaDetails" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PaymentDe__Order__5165187F" Association="Self.FK__PaymentDe__Order__5165187F">
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+            <End Role="PaymentDetails" EntitySet="PaymentDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PizzaOrderingSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CustomerDetail">
+          <Key>
+            <PropertyRef Name="C_Id" />
+          </Key>
+          <Property Name="C_Id" Type="Int32" Nullable="false" />
+          <Property Name="C_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OrderDetails" Relationship="PizzaOrderingSystemModel.FK__OrderDeta__Custo__4E88ABD4" FromRole="CustomerDetail" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="LoginDetail">
+          <Key>
+            <PropertyRef Name="L_Username" />
+          </Key>
+          <Property Name="L_Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="L_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="RegisterDetail">
+          <Key>
+            <PropertyRef Name="R_Id" />
+          </Key>
+          <Property Name="R_Id" Type="Int32" Nullable="false" />
+          <Property Name="R_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="R_Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="R_Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="R_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="R_Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="PizzaOrderingSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CustomerDetails" EntityType="Self.CustomerDetail" />
+          <EntitySet Name="LoginDetails" EntityType="Self.LoginDetail" />
+          <EntitySet Name="RegisterDetails" EntityType="Self.RegisterDetail" />
+          <EntitySet Name="AdminDetails" EntityType="PizzaOrderingSystemModel.AdminDetail" />
+          <EntitySet Name="IntegradientDetails" EntityType="PizzaOrderingSystemModel.IntegradientDetail" />
+          <EntitySet Name="OrderDetails" EntityType="PizzaOrderingSystemModel.OrderDetail" />
+          <EntitySet Name="PaymentDetails" EntityType="PizzaOrderingSystemModel.PaymentDetail" />
+          <EntitySet Name="PizzaDetails" EntityType="PizzaOrderingSystemModel.PizzaDetail" />
+          <AssociationSet Name="FK__OrderDeta__Custo__4E88ABD4" Association="PizzaOrderingSystemModel.FK__OrderDeta__Custo__4E88ABD4">
+            <End Role="CustomerDetail" EntitySet="CustomerDetails" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Integradi__Pizza__5441852A" Association="PizzaOrderingSystemModel.FK__Integradi__Pizza__5441852A">
+            <End Role="PizzaDetail" EntitySet="PizzaDetails" />
+            <End Role="IntegradientDetail" EntitySet="IntegradientDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Pizza__4D94879B" Association="PizzaOrderingSystemModel.FK__OrderDeta__Pizza__4D94879B">
+            <End Role="PizzaDetail" EntitySet="PizzaDetails" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PaymentDe__Order__5165187F" Association="PizzaOrderingSystemModel.FK__PaymentDe__Order__5165187F">
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+            <End Role="PaymentDetail" EntitySet="PaymentDetails" />
+          </AssociationSet>
+          <EntitySet Name="Messages" EntityType="PizzaOrderingSystemModel.Message" />
+        </EntityContainer>
+        <EntityType Name="AdminDetail">
+          <Key>
+            <PropertyRef Name="A_Id" />
+          </Key>
+          <Property Name="A_Id" Type="Int32" Nullable="false" />
+          <Property Name="A_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="IntegradientDetail">
+          <Key>
+            <PropertyRef Name="IngradientId" />
+          </Key>
+          <Property Name="IngradientId" Type="Int32" Nullable="false" />
+          <Property Name="IngradientName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PizzaId" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="AvaliabiltyStatus" Type="Int32" />
+          <NavigationProperty Name="PizzaDetail" Relationship="PizzaOrderingSystemModel.FK__Integradi__Pizza__5441852A" FromRole="IntegradientDetail" ToRole="PizzaDetail" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="PizzaId" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CustomerDetail" Relationship="PizzaOrderingSystemModel.FK__OrderDeta__Custo__4E88ABD4" FromRole="OrderDetail" ToRole="CustomerDetail" />
+          <NavigationProperty Name="PizzaDetail" Relationship="PizzaOrderingSystemModel.FK__OrderDeta__Pizza__4D94879B" FromRole="OrderDetail" ToRole="PizzaDetail" />
+          <NavigationProperty Name="PaymentDetails" Relationship="PizzaOrderingSystemModel.FK__PaymentDe__Order__5165187F" FromRole="OrderDetail" ToRole="PaymentDetail" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PaymentDetail">
+          <Key>
+            <PropertyRef Name="PaymentId" />
+          </Key>
+          <Property Name="PaymentId" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" />
+          <Property Name="Paymentmode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentStatus" Type="Int32" />
+          <NavigationProperty Name="OrderDetail" Relationship="PizzaOrderingSystemModel.FK__PaymentDe__Order__5165187F" FromRole="PaymentDetail" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="PizzaDetail">
+          <Key>
+            <PropertyRef Name="PizzaId" />
+          </Key>
+          <Property Name="PizzaId" Type="Int32" Nullable="false" />
+          <Property Name="PizzaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pizzadescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PizzaPrice" Type="Double" />
+          <NavigationProperty Name="IntegradientDetails" Relationship="PizzaOrderingSystemModel.FK__Integradi__Pizza__5441852A" FromRole="PizzaDetail" ToRole="IntegradientDetail" />
+          <NavigationProperty Name="OrderDetails" Relationship="PizzaOrderingSystemModel.FK__OrderDeta__Pizza__4D94879B" FromRole="PizzaDetail" ToRole="OrderDetail" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="TotalPrice" Type="Double" />
+        </EntityType>
+        <Association Name="FK__OrderDeta__Custo__4E88ABD4">
+          <End Type="PizzaOrderingSystemModel.CustomerDetail" Role="CustomerDetail" Multiplicity="0..1" />
+          <End Type="PizzaOrderingSystemModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerDetail">
+              <PropertyRef Name="C_Id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Integradi__Pizza__5441852A">
+          <End Type="PizzaOrderingSystemModel.PizzaDetail" Role="PizzaDetail" Multiplicity="0..1" />
+          <End Type="PizzaOrderingSystemModel.IntegradientDetail" Role="IntegradientDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PizzaDetail">
+              <PropertyRef Name="PizzaId" />
+            </Principal>
+            <Dependent Role="IntegradientDetail">
+              <PropertyRef Name="PizzaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Pizza__4D94879B">
+          <End Type="PizzaOrderingSystemModel.PizzaDetail" Role="PizzaDetail" Multiplicity="0..1" />
+          <End Type="PizzaOrderingSystemModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PizzaDetail">
+              <PropertyRef Name="PizzaId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="PizzaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PaymentDe__Order__5165187F">
+          <End Type="PizzaOrderingSystemModel.OrderDetail" Role="OrderDetail" Multiplicity="0..1" />
+          <End Type="PizzaOrderingSystemModel.PaymentDetail" Role="PaymentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="PaymentDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PizzaOrderingSystemModelStoreContainer" CdmEntityContainer="PizzaOrderingSystemEntities">
+          <EntitySetMapping Name="CustomerDetails">
+            <EntityTypeMapping TypeName="PizzaOrderingSystemModel.CustomerDetail">
+              <MappingFragment StoreEntitySet="CustomerDetails">
+                <ScalarProperty Name="C_Id" ColumnName="C_Id" />
+                <ScalarProperty Name="C_Name" ColumnName="C_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginDetails">
+            <EntityTypeMapping TypeName="PizzaOrderingSystemModel.LoginDetail">
+              <MappingFragment StoreEntitySet="LoginDetails">
+                <ScalarProperty Name="L_Username" ColumnName="L_Username" />
+                <ScalarProperty Name="L_Password" ColumnName="L_Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegisterDetails">
+            <EntityTypeMapping TypeName="PizzaOrderingSystemModel.RegisterDetail">
+              <MappingFragment StoreEntitySet="RegisterDetails">
+                <ScalarProperty Name="R_Role" ColumnName="R_Role" />
+                <ScalarProperty Name="R_Id" ColumnName="R_Id" />
+                <ScalarProperty Name="R_Name" ColumnName="R_Name" />
+                <ScalarProperty Name="R_Username" ColumnName="R_Username" />
+                <ScalarProperty Name="R_Address" ColumnName="R_Address" />
+                <ScalarProperty Name="R_Password" ColumnName="R_Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminDetails">
+            <EntityTypeMapping TypeName="PizzaOrderingSystemModel.AdminDetail">
+              <MappingFragment StoreEntitySet="AdminDetails">
+                <ScalarProperty Name="A_Name" ColumnName="A_Name" />
+                <ScalarProperty Name="A_Id" ColumnName="A_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IntegradientDetails">
+            <EntityTypeMapping TypeName="PizzaOrderingSystemModel.IntegradientDetail">
+              <MappingFragment StoreEntitySet="IntegradientDetails">
+                <ScalarProperty Name="AvaliabiltyStatus" ColumnName="AvaliabiltyStatus" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="PizzaId" ColumnName="PizzaId" />
+                <ScalarProperty Name="IngradientName" ColumnName="IngradientName" />
+                <ScalarProperty Name="IngradientId" ColumnName="IngradientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="PizzaOrderingSystemModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="PizzaId" ColumnName="PizzaId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentDetails">
+            <EntityTypeMapping TypeName="PizzaOrderingSystemModel.PaymentDetail">
+              <MappingFragment StoreEntitySet="PaymentDetails">
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="Paymentmode" ColumnName="Paymentmode" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PizzaDetails">
+            <EntityTypeMapping TypeName="PizzaOrderingSystemModel.PizzaDetail">
+              <MappingFragment StoreEntitySet="PizzaDetails">
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="PizzaPrice" ColumnName="PizzaPrice" />
+                <ScalarProperty Name="Pizzadescription" ColumnName="Pizzadescription" />
+                <ScalarProperty Name="PizzaName" ColumnName="PizzaName" />
+                <ScalarProperty Name="PizzaId" ColumnName="PizzaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="PizzaOrderingSystemModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

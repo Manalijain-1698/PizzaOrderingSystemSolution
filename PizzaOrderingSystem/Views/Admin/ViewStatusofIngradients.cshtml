@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PizzaOrderingSystem.Models.IntegradientDetail>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<link href="~/Content/ViewIngrdientsStatus.css" rel="stylesheet"/>
+<h2 id="heading">Status of Availability of Ingredients</h2>
+    <table id="StatusOfIngradients">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IngradientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvaliabiltyStatus)
+            </th>
+
+           
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IngradientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AvaliabiltyStatus)
+                </td>
+
+
+            </tr>
+        }
+
+    </table>
+<br />
+<br />
+<div>
+        @Html.ActionLink("Back to Menu", "AdminNavigate")
+</div>

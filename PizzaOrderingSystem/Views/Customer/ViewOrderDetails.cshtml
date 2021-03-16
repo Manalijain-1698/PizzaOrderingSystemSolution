@@ -1,0 +1,40 @@
+﻿
+
+
+
+<!DOCTYPE html>
+
+<link href="~/Content/ViewOrderDetailsStyle.css" rel="stylesheet" />
+<div>
+    <h2 id="heading">Ordered Details</h2>
+    <table id="OrderedDetails">
+        <tr>
+            <th>Customer Name:</th>
+            <th>@ViewBag.cname</th>
+        </tr>
+
+        <tr>
+            <th>Customer Address:</th>
+            <th>@ViewBag.Cadd</th>
+        </tr>
+        <tr>
+            <th>Pizza Name:</th>
+            <th>@ViewBag.pname</th>
+        </tr>
+        <tr>
+            <th>Total Amount:</th>
+            <th>@ViewBag.totalamount</th>
+        </tr>
+
+    </table>
+    <p>Your Pizza will be delivered in 30mins</p>
+    <p>Thank You!</p>
+
+    <div>
+        @Html.ActionLink("back to List of Pizzas", "ViewAllPizzas")
+    </div>
+
+
+</div>
+
+

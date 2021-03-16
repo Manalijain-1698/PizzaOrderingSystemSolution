@@ -1,0 +1,78 @@
+﻿@model PizzaOrderingSystem.Models.PizzaDetail
+
+@{
+    Html.RenderPartial("_CommonHeading");
+    <br />
+}
+<!DOCTYPE html>
+
+
+
+<link href="~/Content/AddPizzasStyle.css" rel="stylesheet" />
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="addPizzaBox">
+            <h2 id="heading">Add New Pizzas</h2>
+
+
+            <div class="form-horizontal">
+
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PizzaId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PizzaId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PizzaId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PizzaName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PizzaName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PizzaName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Pizzadescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Pizzadescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Pizzadescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PizzaPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PizzaPrice, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PizzaPrice, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Add" class="btn btn-default" id="addPizzaButton" />
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <br />
+            <div id="navlink">
+                @Html.ActionLink("Back to Menu", "AdminNavigate")
+            </div>
+            <div id="errorMessage">
+                @ViewBag.message
+            </div>
+            <div>
+                @ViewBag.addmessage
+            </div>
+
+        </div>
+    }
+</body>

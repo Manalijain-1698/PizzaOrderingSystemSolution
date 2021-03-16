@@ -1,0 +1,82 @@
+﻿@model PizzaOrderingSystem.Models.IntegradientDetail
+
+@{
+    Html.RenderPartial("_CommonHeading");
+    <br />
+}
+
+<!DOCTYPE html>
+
+<link href="~/Content/AddIngradientsStyle.css" rel="stylesheet" />
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    <div class="addPizzaBox">
+        <h2 id="heading">Add new Ingredients</h2>
+        <div class="form-horizontal">
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.IngradientId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IngradientId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IngradientId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IngradientName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IngradientName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IngradientName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.PizzaId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PizzaId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PizzaId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AvaliabiltyStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AvaliabiltyStatus, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AvaliabiltyStatus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add" class="btn btn-default" id="addPizzaButton" />
+                </div>
+            </div>
+        </div>
+        <div>
+            @ViewBag.addmessage
+        </div>
+        <br />
+        <div id="navlink">
+            @Html.ActionLink("Back to Menu", "AdminNavigate")
+        </div>
+        <div id="errorMessage">
+            @ViewBag.message
+        </div>
+        
+    </div>
+    }
+</body>

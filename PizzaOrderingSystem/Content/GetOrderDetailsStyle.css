@@ -1,0 +1,56 @@
+﻿body {
+}
+
+#orderdata {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    #orderdata td, #orderdata th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #orderdata tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #orderdata tr:hover {
+        background-color: #ddd;
+    }
+
+    #orderdata th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: lightsalmon;
+        color: white;
+    }
+
+#heading {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#orderbutton {
+    border: none;
+    outline: none;
+    height: 10px;
+    background-color: whitesmoke;
+    color: whitesmoke;
+    font-size: 15px;
+    border-radius: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid whitesmoke;
+    text-align: center;
+    width: 10%;
+}
+
+
+    #orderbutton:hover {
+        cursor: pointer;
+        background-color: lightblue;
+    }
+body {
+}

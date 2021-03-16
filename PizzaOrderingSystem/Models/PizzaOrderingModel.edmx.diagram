@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d88e97869f724706bb2cdc6c898e7b91" Name="Diagram1">
+        <EntityTypeShape EntityType="PizzaOrderingSystemModel.CustomerDetail" Width="1.5" PointX="0.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaOrderingSystemModel.LoginDetail" Width="1.5" PointX="3.875" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaOrderingSystemModel.RegisterDetail" Width="1.5" PointX="4.875" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaOrderingSystemModel.AdminDetail" Width="1.5" PointX="2.125" PointY="0.75" />
+        <EntityTypeShape EntityType="PizzaOrderingSystemModel.IntegradientDetail" Width="1.5" PointX="2.875" PointY="5.625" />
+        <EntityTypeShape EntityType="PizzaOrderingSystemModel.OrderDetail" Width="1.5" PointX="6.875" PointY="2.75" />
+        <EntityTypeShape EntityType="PizzaOrderingSystemModel.PaymentDetail" Width="1.5" PointX="8.375" PointY="0.875" />
+        <EntityTypeShape EntityType="PizzaOrderingSystemModel.PizzaDetail" Width="1.5" PointX="3" PointY="2.625" />
+        <AssociationConnector Association="PizzaOrderingSystemModel.FK__OrderDeta__Custo__4E88ABD4" />
+        <AssociationConnector Association="PizzaOrderingSystemModel.FK__Integradi__Pizza__5441852A" />
+        <AssociationConnector Association="PizzaOrderingSystemModel.FK__OrderDeta__Pizza__4D94879B" />
+        <AssociationConnector Association="PizzaOrderingSystemModel.FK__PaymentDe__Order__5165187F" />
+        <EntityTypeShape EntityType="PizzaOrderingSystemModel.Message" Width="1.5" PointX="5.375" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

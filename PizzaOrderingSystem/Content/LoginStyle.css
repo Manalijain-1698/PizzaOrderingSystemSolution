@@ -1,0 +1,70 @@
+﻿body {
+}
+body {
+    margin: 0;
+    background-image: url('Images/Pizza Image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.registerBox {
+    width: 320px;
+    height: 550px;
+    background-color: whitesmoke;
+    color: black;
+    top: 55%;
+    right: 0%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 50px 30px;
+    border: 1px solid black;
+    background-size: cover;
+    border-radius: 20px;
+}
+
+#heading {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.registerBox input /*[type="text"]*/ {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid grey;
+    background: transparent;
+    outline: none;
+    height: 10px;
+    font-family: "sans-seriff";
+}
+
+#submitButton {
+    border: none;
+    outline: none;
+    height: 40px;
+    background-color: red;
+    color: whitesmoke;
+    font-size: 15px;
+    border-radius: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid whitesmoke;
+    width: 100%;
+}
+
+    #submitButton:hover {
+        cursor: pointer;
+        background-color: lightsalmon;
+    }
+
+#navlink {
+    font-size: 13px;
+    line-height: 10px;
+    color: purple;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+#errorMessage {
+    color: red;
+    font-size: 11px;
+}

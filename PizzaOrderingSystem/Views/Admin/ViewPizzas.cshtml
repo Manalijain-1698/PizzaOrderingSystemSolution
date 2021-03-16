@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PizzaOrderingSystem.Models.PizzaDetail>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<link href="~/Content/ViewPizzasStyle.css" rel="stylesheet" />
+<h2 id="heading">View All Pizzas</h2>
+<table id="PizzaData">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PizzaName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pizzadescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PizzaPrice)
+        </th>
+        
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.PizzaName)
+       
+    </td>
+    
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Pizzadescription)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PizzaPrice)
+    </td>
+
+</tr>
+    }
+   
+
+</table>
+<br />
+<br />
+<div>
+    @Html.ActionLink("Back to Menu", "AdminNavigate")
+</div>
+    
