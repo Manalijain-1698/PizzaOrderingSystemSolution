@@ -49,6 +49,8 @@ namespace PizzaOrderingSystem.Controllers
 
             try
             {
+                int id = db.PizzaDetails.Max(x => x.PizzaId);
+                pizzadetails.PizzaId = id + 1;
                 db.PizzaDetails.Add(pizzadetails);
                 db.SaveChanges();
                 ViewBag.addmessage = "Pizza Added Successfully!";
@@ -93,6 +95,8 @@ namespace PizzaOrderingSystem.Controllers
         {
             try
             {
+                int id = db.IntegradientDetails.Max(x => x.IngradientId);
+                integradientdetails.IngradientId = id + 1;
                 db.IntegradientDetails.Add(integradientdetails);
                 db.SaveChanges();
                 ViewBag.addmessage = "Pizza Ingredients Added Successfully!";

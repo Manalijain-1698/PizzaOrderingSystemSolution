@@ -28,8 +28,13 @@ namespace PizzaOrderingSystem.Controllers
             {
                 try
                 {
-                    
+                    //List<string> ids = registerdetails.R_Id.ToString(); 
+                    //registerdetails.R_Id=
+
+                    int id = db.RegisterDetails.Max(x => x.R_Id);
+                    registerdetails.R_Id = id + 1;
                     db.RegisterDetails.Add(registerdetails);
+                    ViewBag.registermsg = "Registered Successfully!";
                     db.SaveChanges();
                     
                     var user = db.RegisterDetails.Single(u => u.R_Id == registerdetails.R_Id);
